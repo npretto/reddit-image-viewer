@@ -12,8 +12,13 @@ class Main
 
 	public static function main() 
 	{
+		if (Browser.location.hash.length < 1)
+			Browser.window.location.hash="#wordporn+gifs";
+			
+		var subs = Browser.location.hash.substr(1).split("+");
+		
 		var viewer = new RedditViewer();
-		viewer.loadSubreddits(["worldporn","gifs"])
+		viewer.loadSubreddits(subs)
 			.then(function(images){
 				trace("THEN:");
 				trace(images);
