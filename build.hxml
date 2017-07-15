@@ -1,0 +1,5 @@
+-cp src
+-dce full
+-main Main
+-debug
+-js bin/reddit-viewer.js
