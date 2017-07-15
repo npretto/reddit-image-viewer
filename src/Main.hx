@@ -12,6 +12,12 @@ class Main
 
 	public static function main() 
 	{
+		Browser.window.onhashchange = doStuff;
+		doStuff();
+	}
+	
+	static private function doStuff():Void 
+	{
 		if (Browser.location.hash.length < 1)
 			Browser.window.location.hash="#wordporn+gifs";
 			
@@ -22,6 +28,7 @@ class Main
 			.then(function(images){
 				trace("THEN:");
 				trace(images);
+				Browser.document.getElementById("main").innerHTML = ""; //probably not the best way?
 				Browser.document.getElementById("main").appendChild(showAsUL(images));
 			});
 	}
@@ -40,4 +47,6 @@ class Main
 		
 		return ul;
 	}	
+	
+
 }
