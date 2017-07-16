@@ -50,7 +50,7 @@
     vertical-align: middle;
 }
 
-.post img, video
+.post img, video, iframe
 {
 	display: inline-block;
 

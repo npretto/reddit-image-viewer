@@ -79,3 +79,23 @@ class DirectVideo extends Embed
 	}
 
 }
+
+class Gfycat extends Embed
+{
+	var url:String;
+	public function new(url:String){
+		super();
+		this.url = url;
+	}
+	
+	
+	override public function render():String 
+	{
+		return '
+			<iframe src="${url.replace("gfycat.com","gfycat.com/ifr")}" frameborder = "0" scrolling = "no" allowfullscreen >
+			</iframe>
+		';
+
+	}
+
+}

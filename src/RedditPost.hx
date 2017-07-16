@@ -3,6 +3,9 @@ package;
 import Embed.DirectImg;
 import Embed.DirectVideo;
 import Embed.GIFv;
+import Embed.Gfycat;
+
+using StringTools;
 
 
 /**
@@ -52,16 +55,18 @@ class RedditPost
 			{
 				embed = new DirectImg(url);
 				trace('DirectImg($url)');
-			}
-			if (["webm", ".mp4"].indexOf(fileExt) >= 0)
+			}else if (["webm", ".mp4"].indexOf(fileExt) >= 0)
 			{
 				embed = new DirectVideo(url);
 				trace('DirectVideo($url)');
-			}
-			if (["gifv"].indexOf(fileExt) >= 0)
+			}else if(["gifv"].indexOf(fileExt) >= 0)
 			{
 				embed = new GIFv(url);
 				trace('GIFv($url)');
+			}else if (url.indexOf("gfycat.com") >= 0)
+			{
+				embed = new Gfycat(url);
+	
 			}
 
 		}
