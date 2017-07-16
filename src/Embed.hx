@@ -9,9 +9,9 @@ using StringTools;
 class Embed 
 {
 
-	public function new() 
-	{
-		
+	var url:String;
+	public function new(url:String){
+		this.url = url.replace("http://","//").replace("https://","//");
 	}
 	
 	public function render():String
@@ -24,10 +24,8 @@ class Embed
 
 class DirectImg extends Embed
 {
-	var url:String;
 	public function new(url:String){
-		super();
-		this.url = url;
+		super(url);
 	}
 	
 	
@@ -41,9 +39,8 @@ class DirectImg extends Embed
 
 class GIFv extends Embed
 {
-	var url:String;
 	public function new(url:String){
-		super();
+		super(url);
 		this.url = url.replace(".gifv","");
 	}
 	
@@ -62,10 +59,8 @@ class GIFv extends Embed
 
 class DirectVideo extends Embed
 {
-	var url:String;
 	public function new(url:String){
-		super();
-		this.url = url;
+		super(url);
 	}
 	
 	
@@ -82,10 +77,8 @@ class DirectVideo extends Embed
 
 class Gfycat extends Embed
 {
-	var url:String;
 	public function new(url:String){
-		super();
-		this.url = url;
+		super(url);
 	}
 	
 	

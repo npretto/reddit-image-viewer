@@ -89,7 +89,7 @@ class RedditPost
 			</div>
 			
 			<div class="footer">
-				<a target="_blank" href="http://www.reddit.com$permalink"> view on reddit </a>
+				<a target="_blank" href="//www.reddit.com$permalink"> view on reddit </a>
 				<p class="time-ago">${timeAgo(date)}</p>
 			</div>
 		
