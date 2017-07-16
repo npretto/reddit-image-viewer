@@ -1,5 +1,7 @@
 package;
+import haxe.xml.Parser.XmlParserException;
 import js.Browser;
+import js.html.Element;
 import js.html.Node;
 import js.html.UListElement;
 
@@ -29,23 +31,21 @@ class Main
 				trace("THEN:");
 				trace(images);
 				Browser.document.getElementById("main").innerHTML = ""; //probably not the best way?
-				Browser.document.getElementById("main").appendChild(showAsUL(images));
+				addTo(images, Browser.document.getElementById("main"));
 			});
 	}
 	
 	
-	public static function showAsUL(images:Array<RedditPost>):Node
+	public static function addTo(images:Array<RedditPost>,element:Element)
 	{
-		var ul = Browser.document.createUListElement();
 		
 		for (img in images)
 		{
-			var el = Browser.document.createElement("LI");
+			var el = Browser.document.createElement("div");
 			el.innerHTML = img.renderToHtml();
-			ul.appendChild(el);
+			element.appendChild(el);
 		}
 		
-		return ul;
 	}	
 	
 
