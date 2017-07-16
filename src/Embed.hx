@@ -51,8 +51,8 @@ class GIFv extends Embed
 	override public function render():String 
 	{
 		return '
-		<video id="video" controls="" loop="" class="gfyVid" height="auto" style="max-width:100%" autoplay="" muted="muted">
-			<source id="mp4source" src="$url.mp4">
+		<video controls="" preload="auto" autoplay="" muted="muted" loop="loop">
+			<source src="$url.mp4">
 		</video>
 	';
 
@@ -72,7 +72,7 @@ class DirectVideo extends Embed
 	override public function render():String 
 	{
 		return '
-		<video class="preview vsc-initialized" preload="auto" autoplay="autoplay" muted="muted" loop="loop" webkit-playsinline="">
+		<video controls="" preload="auto" autoplay="" muted="muted" loop="loop">
 			<source src="$url">
 		</video>';
 
