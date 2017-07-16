@@ -4,6 +4,8 @@ import Embed.DirectImg;
 import Embed.DirectVideo;
 import Embed.GIFv;
 import Embed.Gfycat;
+import js.Browser;
+import js.html.Element;
 
 using StringTools;
 
@@ -51,7 +53,7 @@ class RedditPost
 			trace('>>> $url');
 			var fileExt = url.substr( -4);
 			trace(fileExt);
-			if ([".png", ".gif", ".jpg"].indexOf(fileExt) >= 0)
+			if ([".png", ".gif", ".jpg"].indexOf(fileExt) >= 0 || url.indexOf("i.reddituploads.com")>=0)
 			{
 				embed = new DirectImg(url);
 				trace('DirectImg($url)');
@@ -74,10 +76,12 @@ class RedditPost
 		return new RedditPost(date, permalink, title, subreddit, author, url, embed);
 	}
 	
-	public function renderToHtml():String
+	public function renderToHtml():Element
 	{
-		return '
-		<div class="post">
+		var el:Element = Browser.document.createDivElement();
+		el.className = "col-md-4";
+		el.innerHTML = '
+		<div class=" post card">
 			<div class="title"><h3>$title</h3></div>
 			
 			<div class="embed">
@@ -88,9 +92,10 @@ class RedditPost
 				<a target="_blank" href="http://www.reddit.com$permalink"> view on reddit </a>
 				<p class="time-ago">${timeAgo(date)}</p>
 			</div>
-		</div>
 		
+		</div>
 		';
+		return el;
 
 	}
 	

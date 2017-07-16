@@ -19,23 +19,7 @@ class RedditViewer
 	
 	public function loadSubreddits(subs:Array<String>):Promise<Array<RedditPost>>
 	{
-		return new Promise(function(resolve, reject) {
-			for (sub in subs)
-			{
-				loadSubreddit(sub).then(function(_images:Array<RedditPost>)
-				{
-					trace(sub);
-					trace(_images);
-					images = images.concat(_images);
-					subs.remove(sub);
-					if (subs.length == 0)
-					{
-						images.sort(function(a:RedditPost, b:RedditPost){return Math.round(b.date.getTime() - a.date.getTime()); });
-						resolve(images);
-					}
-				});
-			}
-		});
+		return loadSubreddit(subs.join("+"));
 	}
 	
 	function loadSubreddit(sub:String):Promise<Array<RedditPost>>

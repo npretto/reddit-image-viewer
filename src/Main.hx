@@ -41,9 +41,7 @@ class Main
 		
 		for (img in images)
 		{
-			var el = Browser.document.createElement("div");
-			el.innerHTML = img.renderToHtml();
-			element.appendChild(el);
+			element.appendChild(img.renderToHtml());
 		}
 		
 	}	

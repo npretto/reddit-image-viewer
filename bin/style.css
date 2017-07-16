@@ -3,23 +3,15 @@
 	box-sizing:border-box;
 }
 
-#main
-{
-    display: -webkit-flex;
-    display: flex;
-    flex-wrap: wrap;
-
-}
-
 
 .post 
 {
-	position:relative;
-	border:2px solid #bababa;
-    width: 350px;
-    height: 450px;
-    margin: 10px;
+	box-sizing: margin-box;
+	margin:10px;
+	border:2px solid #bababa !important;
+    height: 450px  !important;
 }
+
 
 .title{
 	padding:10px;
