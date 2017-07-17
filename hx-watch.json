@@ -1,9 +1,10 @@
 {
   "build": {
     "program" : "haxe",
-    "hxml" : "build", 
+    "hxml" : "build.hxml", 
     "src" : "src",
     "livereload" : "bin",
-    "compiler":"server"
+    "compiler":"server",
+    "port": "6789"
   }
 }
