@@ -25,7 +25,7 @@ class RedditViewer
 	function loadSubreddit(sub:String):Promise<Array<RedditPost>>
 	{
 		var images = new Array<RedditPost>();
-		var req = new Http('https://www.reddit.com/r/$sub.json');
+		var req = new Http('https://www.reddit.com/r/$sub.json?limit=36');
 		req.request();
 		
 		return new Promise(function(resolve, reject) {

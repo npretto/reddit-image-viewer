@@ -21,7 +21,7 @@ class Main
 	static private function doStuff():Void 
 	{
 		if (Browser.location.hash.length < 1)
-			Browser.window.location.hash="#wordporn+gifs";
+			Browser.window.location.hash="#aww+gifs";
 			
 		var subs = Browser.location.hash.substr(1).split("+");
 		

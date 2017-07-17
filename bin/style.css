@@ -7,7 +7,8 @@
 .post 
 {
 	box-sizing: margin-box;
-	margin:10px;
+	margin-bottom:10px;
+
 	border:2px solid #bababa !important;
     height: 450px  !important;
 }
@@ -16,7 +17,6 @@
 .title{
 	padding:10px;
 	border-bottom: 1px solid gray;
-
 }
 
 .title h3 {
@@ -47,8 +47,8 @@
 	display: inline-block;
 
 	vertical-align: middle;
-	max-height:360px;
-	max-width:90%;
+	max-height:345px;
+	max-width:95%;
 }
 
 
