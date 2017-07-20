@@ -21,18 +21,30 @@ class Main
 	static private function doStuff():Void 
 	{
 		if (Browser.location.hash.length < 1)
-			Browser.window.location.hash="#aww+gifs";
+			Browser.window.location.hash = "#aww+gifs";
 			
-		var subs = Browser.location.hash.substr(1).split("+");
 		
-		var viewer = new RedditViewer();
-		viewer.loadSubreddits(subs)
-			.then(function(images){
-				trace("THEN:");
-				trace(images);
-				Browser.document.getElementById("main").innerHTML = ""; //probably not the best way?
-				addTo(images, Browser.document.getElementById("main"));
-			});
+		var hash = Browser.location.hash;
+		
+		var params = new UrlParams();
+
+		if (params.fromPath(hash))
+		{
+			trace(params);
+			trace(params.toString());
+			
+			var viewer = new RedditViewer();
+			viewer.loadSubreddits(params.subs,params.get("after"))
+				.then(function(images){
+					trace("THEN:");
+					trace(images);
+					Browser.document.getElementById("main").innerHTML = ""; //probably not the best way?
+					addTo(images, Browser.document.getElementById("main"));
+				});
+		}else{
+			trace("params not ok");
+		}
+		
 	}
 	
 	

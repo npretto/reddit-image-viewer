@@ -17,15 +17,17 @@ class RedditViewer
 		images = new Array();
 	}
 	
-	public function loadSubreddits(subs:Array<String>):Promise<Array<RedditPost>>
+	public function loadSubreddits(subs:Array<String>,after:Null<String>=null):Promise<Array<RedditPost>>
 	{
-		return loadSubreddit(subs.join("+"));
+		return loadSubreddit(subs.join("+"),after);
 	}
 	
-	function loadSubreddit(sub:String):Promise<Array<RedditPost>>
+	function loadSubreddit(sub:String,after:Null<String>=null):Promise<Array<RedditPost>>
 	{
 		var images = new Array<RedditPost>();
-		var req = new Http('https://www.reddit.com/r/$sub.json?limit=36');
+		var url = 'https://www.reddit.com/r/$sub.json?limit=36${after == null ? "" : "&after="+after}';
+		trace('requesting $url');
+		var req = new Http(url);
 		req.request();
 		
 		return new Promise(function(resolve, reject) {

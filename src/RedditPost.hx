@@ -16,6 +16,7 @@ using StringTools;
  */
 class RedditPost 
 {
+	public var id:String;
 	public var permalink:String;
 	public var author:String;
 	public var sub:String;
@@ -26,8 +27,9 @@ class RedditPost
 	public var url:String;
 
 
-	public function new(date:Date, permalink:String, title:String, sub:String, author:String, url:String, embed:Null<Embed>) 
+	public function new(date:Date, permalink:String, title:String, sub:String, author:String, url:String, embed:Null<Embed>,id:String) 
 	{
+		this.id = id;
 		this.embed = embed;
 		this.permalink = permalink;
 		this.author = author;
@@ -39,6 +41,7 @@ class RedditPost
 	
 	public static function fromJSON(data):RedditPost
 	{
+		//trace(data);
 		var permalink = data.permalink;
 		var subreddit = data.subreddit;
 		var author = data.author;
@@ -47,24 +50,25 @@ class RedditPost
 		
 		var url:String = data.url;
 		var embed:Embed = null;
+		var id:String = data.name;
 		
 		if (url.length > 5)
 		{
-			trace('>>> $url');
+			//trace('>>> $url');
 			var fileExt = url.substr( -4);
-			trace(fileExt);
+			//trace(fileExt);
 			if ([".png", ".gif", ".jpg"].indexOf(fileExt) >= 0 || url.indexOf("i.reddituploads.com")>=0)
 			{
 				embed = new DirectImg(url);
-				trace('DirectImg($url)');
+				//trace('DirectImg($url)');
 			}else if (["webm", ".mp4"].indexOf(fileExt) >= 0)
 			{
 				embed = new DirectVideo(url);
-				trace('DirectVideo($url)');
+				//trace('DirectVideo($url)');
 			}else if(["gifv"].indexOf(fileExt) >= 0)
 			{
 				embed = new GIFv(url);
-				trace('GIFv($url)');
+				//trace('GIFv($url)');
 			}else if (url.indexOf("gfycat.com") >= 0)
 			{
 				embed = new Gfycat(url);
@@ -73,7 +77,7 @@ class RedditPost
 
 		}
 
-		return new RedditPost(date, permalink, title, subreddit, author, url, embed);
+		return new RedditPost(date, permalink, title, subreddit, author, url, embed,id);
 	}
 	
 	public function renderToHtml():Element
@@ -89,7 +93,7 @@ class RedditPost
 			</div>
 			
 			<div class="footer">
-				<a target="_blank" href="//www.reddit.com$permalink"> view on reddit </a>
+				<a target="_blank" href="//www.reddit.com$permalink"> view post on /r/$sub </a>
 				<p class="time-ago">${timeAgo(date)}</p>
 			</div>
 		
