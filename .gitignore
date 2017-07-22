@@ -1,2 +1,4 @@
 bin/reddit-viewer.js
 bin/reddit-viewer.js.map
+report/
+test_build

@@ -34,7 +34,17 @@ class Main
 			trace(params.toString());
 			
 			var viewer = new RedditViewer();
-			viewer.loadSubreddits(params.subs,params.get("after"))
+			
+			if (params.exists("from"))
+			{
+				trace(">>>>>>>>>>>>>THIS IS A FROM PAGE");
+				viewer.getPost(params.get("from")).then(function(post:RedditPost){
+					Browser.document.getElementById("big-view").innerHTML = "";
+					Browser.document.getElementById("big-view").appendChild(post.renderToHtml(true));
+				});
+			}
+			
+			viewer.loadSubreddits(params.subs, params.exists("from") ? params.get("from") : params.get("after"))
 				.then(function(images){
 					trace("THEN:");
 					trace(images);
@@ -43,6 +53,13 @@ class Main
 				});
 		}else{
 			trace("params not ok");
+		}
+		
+		
+		untyped Browser.window.goTo = function(id:String)
+		{
+			trace(id);
+			Browser.window.location.hash = params.getUrlFor("from", id);
 		}
 		
 	}

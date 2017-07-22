@@ -10,9 +10,30 @@
 	margin-bottom:10px;
 
 	border:2px solid #bababa !important;
-    height: 450px  !important;
+    height: 450px;
 }
 
+
+.big-view .post
+{
+	height:700px !important;
+}
+
+.big-view .embed
+{
+	height: 664px !important;
+    text-align: center;
+
+}
+
+.big-view img, video, iframe
+{
+	display: inline-block;
+
+	vertical-align: middle;
+	max-height:500px !important;
+	max-width:95%;
+}
 
 .title{
 	padding:10px;

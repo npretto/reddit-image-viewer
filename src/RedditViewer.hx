@@ -2,6 +2,7 @@ package;
 
 import haxe.Http;
 import haxe.Json;
+import js.Browser;
 import js.Lib;
 import js.Promise;
 
@@ -20,6 +21,28 @@ class RedditViewer
 	public function loadSubreddits(subs:Array<String>,after:Null<String>=null):Promise<Array<RedditPost>>
 	{
 		return loadSubreddit(subs.join("+"),after);
+	}
+	
+	public function getPost(id:String):Promise<RedditPost>
+	{
+		var images = new Array<RedditPost>();
+		var url = 'https://www.reddit.com/${id.substr(3)}.json';
+		trace('requesting $url');
+		var req = new Http(url);
+		req.request();
+		
+		return new Promise(function(resolve, reject) {
+			req.onData = function(data){
+				trace(">>>>>>>>>>>>single post data");
+				trace(data);
+				untyped Browser.window.data =  Json.parse(data);
+				resolve(RedditPost.fromJSON(Json.parse(data)[0].data.children[0].data));
+			}
+			req.onError = function(error)
+			{
+				reject(error);
+			}
+		});
 	}
 	
 	function loadSubreddit(sub:String,after:Null<String>=null):Promise<Array<RedditPost>>

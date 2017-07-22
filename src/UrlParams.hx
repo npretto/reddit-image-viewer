@@ -58,17 +58,29 @@ class UrlParams extends StringMap<String>
 		return true;
 	}
 	
+	public function getUrlFor(key:String,value:String):String
+	{
+		var oldValue = get(key);
+		set(key, value);
+		var ret = this.toString();
+		set(key, oldValue);
+		return ret;
+	}
+	
 	
 	public override function toString():String
 	{
-		var str = "?";
+		var str = "";
 		
 		for (key in keys())
 		{
-			str += key + "=" + get(key);
+			str += "&"+key + "=" + get(key);
 		}
 		
-		
+		if (str.length > 0)
+		{
+			str = "?"+str.substr(1);
+		}
 		
 		return "#" + subs.join("+")+str;
 	}

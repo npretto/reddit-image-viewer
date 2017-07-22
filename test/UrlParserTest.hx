@@ -50,7 +50,23 @@ class UrlParserTest
 		Assert.areEqual(params.get("before"), null);		
 		Assert.areEqual(params.get("limit"), "35");
 	}
-
+	
+	@Test
+	public function testUrlParamsToString():Void
+	{
+		var params = new UrlParams();
+		Assert.areEqual(params.toString(), "#");
+		params.subs = ["aww"];
+		Assert.areEqual(params.toString(), "#aww");
+		params.subs = ["aww","gifs"];
+		Assert.areEqual(params.toString(), "#aww+gifs");
+		params.set("before", "t3_f3d2d3");
+		Assert.areEqual(params.toString(), "#aww+gifs?before=t3_f3d2d3");
+		params.set("limit", "35");
+		Assert.areEqual(params.toString(), "#aww+gifs?before=t3_f3d2d3&limit=35");
+		
+	}
+	
 
 	
 

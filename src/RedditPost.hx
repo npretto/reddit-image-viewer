@@ -80,13 +80,24 @@ class RedditPost
 		return new RedditPost(date, permalink, title, subreddit, author, url, embed,id);
 	}
 	
-	public function renderToHtml():Element
+	public function renderToHtml(?bigView = false):Element
 	{
 		var el:Element = Browser.document.createDivElement();
-		el.className = "col-md-4";
+		if (bigView)
+		{
+			el.className = "col-md-12 big-view";
+		}else{
+			el.className = "col-md-4";
+		}
 		el.innerHTML = '
 		<div class=" post card">
-			<div class="title"><h3>$title</h3></div>
+			<div class="title">
+				<h3>
+					<a href="javascript:goTo(\'$id\')">
+						$title
+					</a>
+				</h3>
+			</div>
 			
 			<div class="embed">
 				${renderEmbed()}
