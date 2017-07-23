@@ -20,6 +20,8 @@ class Main
 	
 	static private function doStuff():Void 
 	{
+		Browser.window.scroll(0, 0);
+		
 		if (Browser.location.hash.length < 1)
 			Browser.window.location.hash = "#aww+gifs";
 			
